@@ -1,5 +1,6 @@
 package regression;
 
+import Util.DoLogin;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,24 +14,12 @@ import pages.Menu;
 
 import java.io.IOException;
 
+import static Util.ConfigReader.getSheetPath;
 import static Utility.ForDataProvider.getMyData;
 import static Utility.ForDataProvider.setSheetAddClient;
 
-public class AddClientDPTest {
-    WebDriver driver;
-    @BeforeClass
-    public void loginTest()
-    {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("http://localhost/ip");
+public class AddClientDPTest extends DoLogin {
 
-        Login login = new Login(driver);
-
-        login.setTxtUsername("amolujagare@gmail.com");
-        login.setTxtPassword("admin123");
-        login.clickLogin();
-    }
 
     @Test(dataProvider = "getData")
     public void addClientTest(String clientName, String clientSurname, String language,
@@ -90,6 +79,6 @@ public class AddClientDPTest {
 
     @DataProvider
     public Object[][] getData() throws IOException {
-        return getMyData("Data/add_client_data.xlsx","Sheet1");
+        return getMyData(getSheetPath(),"Sheet1");
     }
 }

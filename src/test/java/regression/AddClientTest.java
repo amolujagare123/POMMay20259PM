@@ -1,5 +1,6 @@
 package regression;
 
+import Util.DoLogin;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeClass;
@@ -8,21 +9,8 @@ import pages.AddClient;
 import pages.Login;
 import pages.Menu;
 
-public class AddClientTest {
-    WebDriver driver;
-    @BeforeClass
-    public void loginTest()
-    {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("http://localhost/ip");
+public class AddClientTest extends DoLogin {
 
-        Login login = new Login(driver);
-
-        login.setTxtUsername("amolujagare@gmail.com");
-        login.setTxtPassword("admin123");
-        login.clickLogin();
-    }
 
     @Test
     public void addClientTest()
@@ -31,7 +19,6 @@ public class AddClientTest {
         menu.clickAddClient();
 
         AddClient addClient = new AddClient(driver);
-
 
 
         addClient.setClientName("Amol2");
@@ -44,7 +31,7 @@ public class AddClientTest {
         addClient.setZipCode("411001");
         addClient.setCountry("Nigeria");
         addClient.setGender("Female");
-        addClient.setBirthdate("22-May-2025");
+      //  addClient.setBirthdate("22-May-2025");
         addClient.setPhoneNumber("02012345678");
         addClient.setFaxNumber("02087654321");
         addClient.setMobileNumber("9876543210");

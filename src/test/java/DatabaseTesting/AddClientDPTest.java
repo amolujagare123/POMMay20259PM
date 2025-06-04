@@ -1,5 +1,6 @@
 package DatabaseTesting;
 
+import Util.DoLogin;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -19,21 +20,8 @@ import static Util.Conversion.*;
 import static Utility.ForDataProvider.getMyData;
 import static Utility.ForDataProvider.setSheetAddClient;
 
-public class AddClientDPTest {
-    WebDriver driver;
-    @BeforeClass
-    public void loginTest()
-    {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("http://localhost/ip");
+public class AddClientDPTest extends DoLogin {
 
-        Login login = new Login(driver);
-
-        login.setTxtUsername("amolujagare@gmail.com");
-        login.setTxtPassword("admin123");
-        login.clickLogin();
-    }
 
     @Test(dataProvider = "getData")
     public void addClientTest(String clientName, String clientSurname, String language,
